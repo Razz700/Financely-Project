@@ -181,7 +181,7 @@ try{
  }
  ///////////////////////////////////////////////
  async function editTransaction(oldvalue,newvalue){
-console.log('edited',oldvalue,newvalue);
+//console.log('edited',oldvalue,newvalue);
 try{
   const q=query(collection(db,`users/${user.uid}/transactions`),where('name', '==', oldvalue.name),
   where('amount', '==', oldvalue.amount),
