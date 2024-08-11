@@ -21,7 +21,7 @@ function Tablecustom({data,columns,deleteTransaction,editTransaction}) {
 const [classActive,setClassActive]=useState(1);
 const [newdata,setnewdata]=useState(data.slice(0,10));
 const [disabled,setdisabled]=useState(()=>data.length>10?[true,false]:[true,true]);
-function navigatePage(page){
+function navigatePage(page,rdata){
     let activePage=classActive;
     if (page==='previous') {
        activePage=classActive-1;
@@ -35,9 +35,10 @@ function navigatePage(page){
     }
     setClassActive(activePage);
     // console.log(activePage,pages.length,'message');
+    rdata?console.log(rdata):console.log('hi');
     setdisabled([activePage===1,activePage===pages.length || pages.length===0]);
 }
-useEffect(()=>navigatePage(1),[data]);
+useEffect(()=>navigatePage(1,data),[data]);
 ////////////////////modal code////////////////////
 const [isModalDeleteOpen,setDeleteModalOpen]=useState(false);
 const [modalData,setModalData]=useState([]);
@@ -72,12 +73,12 @@ setModalData(item);
         <p onClick={()=>handleDeletebtn(item)} className='table-btn'>Delete</p></td>
     </tr>)}
     {/* No data Image */}
-{pages.length==0 && <tr><td colSpan={columns.length} className='nodata'><div><img src={nodata}/></div></td></tr>}
+{pages.length===0 && <tr><td colSpan={columns.length} className='nodata'><div><img alt='NO-data-img' src={nodata}/></div></td></tr>}
 
-{pages.length!=0 && <tr style={{borderBottom:'none'}} className='last-row-column'><td style={{textAlign:'right'}} colSpan={columns.length}>
+{pages.length!==0 && <tr style={{borderBottom:'none'}} className='last-row-column'><td style={{textAlign:'right'}} colSpan={columns.length}>
     <div>
     <button onClick={()=>navigatePage('previous')} disabled={disabled[0]} className='table-btn-nav'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg></button>
-{pages.map((item,i)=><button onClick={()=>{navigatePage(item)}} key={'tableActiveBtn'+i} className={item==classActive?'table-btn-nav activeTableBtn':'table-btn-nav'}>{item}</button>)}
+{pages.map((item,i)=><button onClick={()=>{navigatePage(item)}} key={'tableActiveBtn'+i} className={item===classActive?'table-btn-nav activeTableBtn':'table-btn-nav'}>{item}</button>)}
     <button onClick={()=>navigatePage('next')} disabled={disabled[1]} className='table-btn-nav'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6"><path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg></button>
     </div>
     </td></tr>}

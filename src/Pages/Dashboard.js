@@ -76,31 +76,31 @@ if (!user) {
 }else{
   fetchTransactions();
 }
- });
+ },[]);
 //////////////////////////////////////////////////////
  useEffect(()=>{
-calculateBalance();
+calculateBalance(transactions);
  },[transactions]);
  ////////////////////////////////////////
- async function updateDetailsForProfilepage() {
+ async function updateDetailsForProfilepage(income,expense,transactionsLength) {
   if(!user)return;
 const useref=doc(db,"users", user.uid);
  try{
   await updateDoc(useref, {
     income:income,
     expense:expense,
-    transactionsCount:transactions.length
+    transactionsCount:transactionsLength
  });
  }catch(e){
 console.log(e);
  }
  }
- //////////////
+ //////////////////////////////////////////////
  useEffect(()=>{
-  updateDetailsForProfilepage();
- },[transactions.length]);
+  updateDetailsForProfilepage(income,expense,transactions.length);
+ },[income,expense,transactions.length]);
 //////////////////////////////////////////
- function calculateBalance(){
+ function calculateBalance(transactions){
 let incomeTotal=0;
 let expenseTotal=0;
 transactions.forEach((transaction)=>{
@@ -164,7 +164,7 @@ try{
   const transactionRef = doc(db, `users/${user.uid}/transactions`, docIds[0]);
   await deleteDoc(transactionRef);
   settransactions(transactions=>{
-    const newarr=transactions.filter((elem)=>elem.name!=item.name || elem.type!=item.type || elem.tag!=item.tag || elem.date!=item.date || elem.amount!=item.amount);
+    const newarr=transactions.filter((elem)=>elem.name!==item.name || elem.type!==item.type || elem.tag!==item.tag || elem.date!==item.date || elem.amount!==item.amount);
   return newarr;
   });
   toast.success('Transaction Deleted!');
@@ -187,7 +187,7 @@ try{
   const transactionRef = doc(db, `users/${user.uid}/transactions`, docIds[0]);
   await updateDoc(transactionRef, {...newvalue});
   settransactions(transactions=>{
-    const newarr=transactions.map((elem)=>{if(elem.name!=oldvalue.name || elem.tag!=oldvalue.tag || elem.date!=oldvalue.date || elem.amount!=oldvalue.amount){
+    const newarr=transactions.map((elem)=>{if(elem.name!==oldvalue.name || elem.tag!==oldvalue.tag || elem.date!==oldvalue.date || elem.amount!==oldvalue.amount){
       return elem;
     }else{
       return {...newvalue,type:oldvalue.type}
@@ -212,7 +212,7 @@ try{
         showIncomeModal={showIncomeModal}
         setResetModalVisible={setResetModalVisible}
          />
-        {transactions.length!=0?<ChartComponent transactions={transactions} />:<NoTransaction/>} 
+        {transactions.length!==0?<ChartComponent transactions={transactions} />:<NoTransaction/>} 
       <AddIncomeModal 
        isIncomeModalVisible={isIncomeModalVisible}
        handleIncomeModalCancel={handleIncomeModalCancel}

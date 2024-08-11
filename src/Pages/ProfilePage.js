@@ -21,10 +21,10 @@ function ProfilePage() {
   const [userDetails,setUserDetails]=useState();
 //console.log(user,'test what it');
 
-useEffect(()=>{getUserName()},[user]);
+useEffect(()=>{getUserName(user)},[user]);
 
 ////////////////////////////////////
-async function getUserName(){
+async function getUserName(user){
   try{
   if(user){
     const userDocRef = doc(db, `users/${user.uid}`);
@@ -69,7 +69,7 @@ async function updateProfileDetails(newdata){
    </div>
 {user && <><div className='profile-content'>
   <div className='profile-content-div'>
-  {userDetails && <><div className='img'><img src={userDetails.photoURL ? userDetails.photoURL:userimg} style={{display:'block',width:'100%', height:'100%',borderRadius:'50%'}} /></div>
+  {userDetails && <><div className='img'><img src={userDetails.photoURL ? userDetails.photoURL:userimg} alt='profile-img' style={{display:'block',width:'100%', height:'100%',borderRadius:'50%'}} /></div>
  <p className='userDetails-name'>{userDetails.name}</p>
   <p style={{textAlign:'center'}}>{userDetails.email}</p>
     <div className='flex'>

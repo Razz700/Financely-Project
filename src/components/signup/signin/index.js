@@ -9,7 +9,7 @@ import Button from '../../Button';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { getDoc } from 'firebase/firestore';
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup} from "firebase/auth";
 import { provider } from '../../../firebase.js';
 
 function SignUpcomponent() {

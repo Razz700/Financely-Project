@@ -9,10 +9,10 @@ function ProfileModal({loadprofile,updateProfileDetails,isModalProfileOpen,setpr
     const [image,setimage]=useState();
     const [select,setSelect]=useState('#2970ff');
     const [profileimgYes,setProfileimgYes]=useState(false);
-    useEffect(() => {
+    useEffect((isModalProfileOpen,nameval) => {
         if (isModalProfileOpen) {
             document.body.style.overflow = 'hidden';
-            setname(userDetails.name);
+            setname(nameval);
         } else {
             document.body.style.overflow = 'auto';
         }
@@ -20,7 +20,7 @@ function ProfileModal({loadprofile,updateProfileDetails,isModalProfileOpen,setpr
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isModalProfileOpen]);
+    }, [isModalProfileOpen,userDetails.name]);
     ///////////////////////////////////////////
   return (
     <>

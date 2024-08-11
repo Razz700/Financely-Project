@@ -14,18 +14,18 @@ import {  doc, getDoc} from 'firebase/firestore';
     const navigate=useNavigate();
     const location=useLocation();
 useEffect(()=>{
-if (user && location.pathname=='/'){
+if (user && location.pathname==='/'){
   //console.log(window.location.href,'in href',location.pathname);
   //console.log(user);
     navigate('/dashboard');
 }  
-},[user,loading]);
+},[user,location.pathname]);
 
 useEffect(()=>{
-  setTimeout(()=>getUserName(),500);},[user,isprofileUpdated]);
+  setTimeout(()=>getUserName(user,isprofileUpdated),500);},[user,isprofileUpdated]);
 const [userDetails,setUserDetails]=useState();
 ////////////////////////////////////
-async function getUserName(){
+async function getUserName(user,isprofileUpdated){
   try{
   if(user){
     const userDocRef = doc(db, `users/${user.uid}`);
@@ -38,7 +38,7 @@ async function getUserName(){
   root.style.setProperty('--theme',currentuserdata.themeColor);
 }
   }}catch(e){
-    console.log(e.message);
+    console.log(e.message,isprofileUpdated);
   }
 }
 //////////////////////////////////////////////
@@ -63,7 +63,7 @@ async function getUserName(){
     <p className='logo' title={user?'Navigate to dashboard':''} onClick={()=>{if(user && location.pathname!=='/dashboard')navigate('/dashboard')}}>Financely.</p>
     {user && <div  style={{display:'flex',alignItems:'center',gap:'0.75rem'}}>
       <p className='userName-header'>Welcome back, {userDetails && <span style={{textTransform:'capitalize'}}>{userDetails.name}</span>}!</p>
-      <p title='Navigate to Profile' className='navigateToProfilePage' onClick={()=>{if(location.pathname!=='/profile')navigate('/profile')}}>{userDetails && <img src={userDetails.photoURL ? userDetails.photoURL:userimg} style={{display:'block',width:'1.5rem', height:'1.5rem',borderRadius:'50%'}} />}</p>
+      <p title='Navigate to Profile' className='navigateToProfilePage' onClick={()=>{if(location.pathname!=='/profile')navigate('/profile')}}>{userDetails && <img src={userDetails.photoURL ? userDetails.photoURL:userimg} alt='user-img' style={{display:'block',width:'1.5rem', height:'1.5rem',borderRadius:'50%'}} />}</p>
       <p className='logo link' title='Logout' onClick={logoutfnc}>Logout</p></div>
     }
     </div>

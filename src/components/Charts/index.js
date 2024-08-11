@@ -10,7 +10,7 @@ function ChartComponent({transactions}) {
     const data = sortedTransactions.map((item)=>{
         return {date:item.date,amount:item.amount}
     });
-    const spendingData=sortedTransactions.filter((item)=>item.type=='expense');
+    const spendingData=sortedTransactions.filter((item)=>item.type==='expense');
     let newSpending=[{tag:'food',amount:0},{tag:'education',amount:0},{tag:'office',amount:0},{tag:'others',amount:0}];
     spendingData.forEach(item => {
       if (item.tag==='food') {
@@ -46,15 +46,19 @@ function ChartComponent({transactions}) {
        angleField:'amount',
        colorField:'tag'
       };
-      let chart;
-      let piechart;
+    //  let chart;
+    //  let piechart;
   return (
     <div className='chart-wrapper'>
         <div><h2 style={{paddingLeft:'10px'}}>Your Analytics</h2>
- <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />
+ <Line {...config} 
+// onReady={(chartInstance) => (chart = chartInstance)} 
+ />
   </div>
   <div><h2 style={{paddingLeft:'10px'}}>Your Spendings</h2>
- <Pie {...spendingconfig} onReady={(chartInstance) => (piechart = chartInstance)} />
+ <Pie  {...spendingconfig} 
+ //onReady={(chartInstance) => (piechart = chartInstance)}
+  />
   </div>
            </div>
   
