@@ -19,7 +19,7 @@ function ProfilePage() {
   const [loadprofile,setloadProfile]=useState(false);
   const navigate=useNavigate();
   const [userDetails,setUserDetails]=useState();
-//console.log(user,'test what it ');
+//console.log(user,'test what it');
 
 useEffect(()=>{getUserName()},[user]);
 

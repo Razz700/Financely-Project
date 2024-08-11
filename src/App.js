@@ -2,7 +2,7 @@ import './App.css';
 import {BrowserRouter as Router,Route,Routes} from 'react-router-dom'
 import Dashboard from './Pages/Dashboard';
 import SignUp from './Pages/SignUp';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProfilePage from './Pages/ProfilePage';
 function App() {

@@ -46,8 +46,8 @@ function ChartComponent({transactions}) {
        angleField:'amount',
        colorField:'tag'
       };
-      let chart;
-    let piechart;
+      //let chart;
+      //let piechart;
   return (
     <div className='chart-wrapper'>
         <div><h2 style={{paddingLeft:'10px'}}>Your Analytics</h2>

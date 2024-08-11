@@ -65,7 +65,7 @@ if(!many)toast.success('Transaction Added!');
 settransactions(transactions=>[...transactions,transaction]);
   }catch(e){
 console.log('Error adding a Doc',e);
-if(!many)toast.error("Couldn\'t add transaction!");
+if(!many)toast.error("Couldn't add transaction!");
   }
  }
  ///////////////////////////////////////////////
@@ -76,7 +76,7 @@ if (!user) {
 }else{
   fetchTransactions();
 }
- },[]);
+ });
 //////////////////////////////////////////////////////
  useEffect(()=>{
 calculateBalance();
@@ -98,7 +98,7 @@ console.log(e);
  //////////////
  useEffect(()=>{
   updateDetailsForProfilepage();
- },[income,expense,transactions.length]);
+ },[transactions.length]);
 //////////////////////////////////////////
  function calculateBalance(){
 let incomeTotal=0;
