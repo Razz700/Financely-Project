@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import userimg from '../../assets/user.svg';
 import {  doc, getDoc} from 'firebase/firestore';
 
+
  function Header({isprofileUpdated}) {
     const [user,loading]=useAuthState(auth);
     const navigate=useNavigate();
