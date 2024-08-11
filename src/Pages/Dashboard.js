@@ -25,6 +25,7 @@ function Dashboard() {
   const [isResetModalVisible,setResetModalVisible]=useState(false);
   const [income,setIncome]=useState(0);
   const [expense,setExpense]=useState(0);
+  const [docupdated,setdocupdated]=useState(false);
   const [totalBalance,setTotalBalance]=useState(0);
   const showIncomeModal=()=>{
     setIsIncomeModalVisible(true);
@@ -87,7 +88,8 @@ calculateBalance(transactions);
 const useref=doc(db,`users/${user.uid}`);
 const querysnapshot=await getDoc(useref);
 const currdata=querysnapshot.data();
-if (currdata.income!=income || currdata.expense!=expense || currdata.transactionsCount!=transactions.length) {
+if(!currdata)return;
+if (currdata.income!=income || currdata.expense!=expense || currdata.transactionsCount!=transactions.length || !currdata.income || !currdata.expense || !currdata.transactionsCount) {
   try{
     await updateDoc(useref, {
       income:income,
@@ -131,6 +133,7 @@ if (user) {
   settransactions(transactionsArray);
  // console.log('transaction array',transactionsArray);
   toast.success('Transactions Fetched!');
+  setdocupdated(!docupdated);
 }
 setloading(false);
  }
@@ -206,7 +209,7 @@ try{
  //////////////////////////////////////////////////
   return (
   <div>
-      <Header/>
+      <Header docupdated={docupdated} />
       {user && loading?(<p>Loading...</p>):(<>
         <Cards
         income={income}

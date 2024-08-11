@@ -21,7 +21,7 @@ function SignUpcomponent() {
     const [loginForm,setloginForm]=useState(false);
     const navigate=useNavigate();
 
- function SignupwithEmail(){
+  function SignupwithEmail(){
     setloading(true);
    // console.log(name,email,password,confirmpassword);
     if (name!=='' && email!=='' && password!=='' && confirmpassword!=='') {
@@ -38,7 +38,7 @@ function SignUpcomponent() {
               setpassword('');
               setconfirmpassword('');
               createDoc(user);
-              navigate('/dashboard');
+              //navigate('/dashboard');
               // ...
             })
             .catch((error) => {
@@ -78,12 +78,15 @@ if (!userData.exists()) {
         });
         setloading(false);
         toast.success('Doc created!');
+        navigate('/dashboard');
     }catch(e){
        toast.error(e.message);
        setloading(false);
+       navigate('/dashboard');
     }
 }else{
     toast.error('Doc already exists!');
+    navigate('/dashboard');
     setloading(false);
 }  
  }
@@ -134,7 +137,7 @@ try{
        // console.log(user);
         setloading(false);
         toast.success('User Authenticated!');
-        navigate('/dashboard')
+        //navigate('/dashboard')
         createDoc(user);
         // IdP data available using getAdditionalUserInfo(result)
         // ...
