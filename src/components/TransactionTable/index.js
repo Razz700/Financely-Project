@@ -92,7 +92,7 @@ parse(e.target.files[0],{
   //  console.log('results>>>',results);
     for(const transaction of results.data){
      // console.log(transaction,'transactions');
-      if (transaction.name!='' && transaction.type!='' && transaction.date!='' && transaction.amount!='' && transaction.tag!='') {
+      if (transaction.name!=='' && transaction.type!=='' && transaction.date!=='' && transaction.amount!=='' && transaction.tag!=='') {
         const newTransaction={
           ...transaction,
           date:formatDate(transaction.date),
