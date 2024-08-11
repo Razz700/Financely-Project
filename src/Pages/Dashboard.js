@@ -5,7 +5,7 @@ import AddExpenseModal from '../components/Modal/AddExpenseModal';
 import AddIncomeModal from '../components/Modal/AddIncomeModal';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth,db } from '../firebase';
-import { addDoc, collection, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import TransactionTable from '../components/TransactionTable';
@@ -56,10 +56,10 @@ setIsIncomeModalVisible(false);
   ///////////////////////////////////////////////////
  async function addtransaction(transaction,many){
   try{
-const docRef=await addDoc(
+//const docRef=
+await addDoc(
   collection(db,`users/${user.uid}/transactions`),
-  transaction
-);
+  transaction);
 //console.log('document writted with id',docRef.id);
 if(!many)toast.success('Transaction Added!');
 settransactions(transactions=>[...transactions,transaction]);

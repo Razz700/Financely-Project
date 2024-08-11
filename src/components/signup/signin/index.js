@@ -24,8 +24,8 @@ function SignUpcomponent() {
  function SignupwithEmail(){
     setloading(true);
    // console.log(name,email,password,confirmpassword);
-    if (name!='' && email!='' && password!='' && confirmpassword!='') {
-        if (password==confirmpassword) {
+    if (name!=='' && email!=='' && password!=='' && confirmpassword!=='') {
+        if (password===confirmpassword) {
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
               // Signed up 
@@ -42,7 +42,7 @@ function SignUpcomponent() {
               // ...
             })
             .catch((error) => {
-              const errorCode = error.code;
+              //const errorCode = error.code;
               const errorMessage = error.message;
               toast.error(errorMessage);
               setloading(false);
@@ -92,7 +92,7 @@ if (!userData.exists()) {
  //login Using Email
  function loginUsingEmail(){
     //console.log('email,password',email,password);
-    if (email!='' && password!='') {
+    if (email!=='' && password!=='') {
         setloading(true);
         signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
@@ -107,7 +107,7 @@ if (!userData.exists()) {
     // ...
   })
   .catch((error) => {
-    const errorCode = error.code;
+    //const errorCode = error.code;
     const errorMessage = error.message;
     setloading(false);
     toast.error(errorMessage);
@@ -128,7 +128,7 @@ try{
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+        //const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
        // console.log(user);
@@ -140,12 +140,12 @@ try{
         // ...
       }).catch((error) => {
         // Handle Errors here.
-        const errorCode = error.code;
+        //const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
-        const email = error.customData.email;
+       // const email = error.customData.email;
         // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
+       // const credential = GoogleAuthProvider.credentialFromError(error);
         setloading(false);
         toast.error(errorMessage);
         // ...

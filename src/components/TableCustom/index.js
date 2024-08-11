@@ -23,10 +23,10 @@ const [newdata,setnewdata]=useState(data.slice(0,10));
 const [disabled,setdisabled]=useState(()=>data.length>10?[true,false]:[true,true]);
 function navigatePage(page){
     let activePage=classActive;
-    if (page=='previous') {
+    if (page==='previous') {
        activePage=classActive-1;
         setnewdata(data.slice((activePage-1)*10,(activePage)*10));
-    }else if(page=='next'){
+    }else if(page==='next'){
         activePage=classActive+1;
      setnewdata(data.slice((activePage-1)*10,(activePage)*10));
     }else{
@@ -35,7 +35,7 @@ function navigatePage(page){
     }
     setClassActive(activePage);
     // console.log(activePage,pages.length,'message');
-    setdisabled([activePage==1,activePage==pages.length || pages.length==0]);
+    setdisabled([activePage===1,activePage===pages.length || pages.length===0]);
 }
 useEffect(()=>navigatePage(1),[data]);
 ////////////////////modal code////////////////////

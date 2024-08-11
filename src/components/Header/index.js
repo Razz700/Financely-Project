@@ -59,10 +59,10 @@ async function getUserName(){
    ///////////////////////////////////////////////
   return (
     <div className='navbar'>
-    <p className='logo' title={user?'Navigate to dashboard':''} onClick={()=>{if(user && location.pathname!='/dashboard')navigate('/dashboard')}}>Financely.</p>
+    <p className='logo' title={user?'Navigate to dashboard':''} onClick={()=>{if(user && location.pathname!=='/dashboard')navigate('/dashboard')}}>Financely.</p>
     {user && <div  style={{display:'flex',alignItems:'center',gap:'0.75rem'}}>
       <p className='userName-header'>Welcome back, {userDetails && <span style={{textTransform:'capitalize'}}>{userDetails.name}</span>}!</p>
-      <p title='Navigate to Profile' className='navigateToProfilePage' onClick={()=>{if(location.pathname!='/profile')navigate('/profile')}}>{userDetails && <img src={userDetails.photoURL ? userDetails.photoURL:userimg} style={{display:'block',width:'1.5rem', height:'1.5rem',borderRadius:'50%'}} />}</p>
+      <p title='Navigate to Profile' className='navigateToProfilePage' onClick={()=>{if(location.pathname!=='/profile')navigate('/profile')}}>{userDetails && <img src={userDetails.photoURL ? userDetails.photoURL:userimg} style={{display:'block',width:'1.5rem', height:'1.5rem',borderRadius:'50%'}} />}</p>
       <p className='logo link' title='Logout' onClick={logoutfnc}>Logout</p></div>
     }
     </div>

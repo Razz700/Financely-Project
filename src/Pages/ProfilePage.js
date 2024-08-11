@@ -11,7 +11,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
 function ProfilePage() {
-  const [user,loading]=useAuthState(auth);
+  const [user]=useAuthState(auth);
   const [isprofileUpdated,setisProfileUpdated]=useState(false);
  // const location=useLocation();
   const [isModalProfileOpen,setprofileModalopen]=useState(false);

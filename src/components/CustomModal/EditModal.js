@@ -34,13 +34,13 @@ function EditModal({isModalEditOpen,setisModalEditOpen,modalData,editTransaction
            <hr/>
            <p className='editModal-inputs'>Name:<input type='text' value={name} onChange={(e)=>setname(e.target.value)} required /></p>
            <p className='editModal-inputs'>Tag:<select value={tag} onChange={(e)=>settag(e.target.value)} required>
-                    {modalData.type=='income' && <>
+                    {modalData.type==='income' && <>
                         <option value={'salary'}>Salary</option>
                         <option value={'investment'}>Investment</option>
                         <option value={'freelance'}>Freelance</option>
                         <option value={'others'}>Others</option>
                     </>}
-                    {modalData.type=='expense' && <>
+                    {modalData.type==='expense' && <>
                         <option value={'food'}>Food</option>
                         <option value={'office'}>Office</option>
                         <option value={'education'}>Education</option>
@@ -51,7 +51,7 @@ function EditModal({isModalEditOpen,setisModalEditOpen,modalData,editTransaction
                     <p className='editModal-inputs'>Date: <input type='date' value={date} onChange={(e)=>setdate(e.target.value)} required /></p>
                <Button blue={true} text={"Update"} onclick={()=>{
               // console.log(name,tag,amount,date);
-               if (name!=''  && tag!='' && amount!='' && date!='') {
+               if (name!==''  && tag!=='' && amount!=='' && date!=='') {
                 editTransaction(modalData,{
                     name:name,
                     tag:tag,

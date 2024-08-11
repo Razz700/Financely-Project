@@ -54,7 +54,7 @@ function ProfileModal({loadprofile,updateProfileDetails,isModalProfileOpen,setpr
                  reader.onload =async function(e) {
                      imagesrc= e.target.result;
                      setimage(null);
-                     if (name!='') {
+                     if (name!=='') {
                              await updateProfileDetails({name:name,photoURL:imagesrc,themeColor:select});
                             }else{
                              toast.error('All fields are required!!');
@@ -64,7 +64,7 @@ function ProfileModal({loadprofile,updateProfileDetails,isModalProfileOpen,setpr
                              toast.info('Select \'No\' to cancel Image Update');
                              return;
             }}else{
-                if(name!=''){await updateProfileDetails({name:name,themeColor:select});
+                if(name!==''){await updateProfileDetails({name:name,themeColor:select});
                 }else{
                 toast.error('All fields are required!!');
                      }

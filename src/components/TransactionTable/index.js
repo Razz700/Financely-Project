@@ -77,7 +77,7 @@ document.body.removeChild(tempLink);
       //////////////////////////////////////////
       function formatDate(date) {
         const arr=date.split('-');
-        if(arr[0].length==4){return date};
+        if(arr[0].length===4){return date};
         const arr1=arr.reverse();
         const date1=arr1.join('-');
         return date1;

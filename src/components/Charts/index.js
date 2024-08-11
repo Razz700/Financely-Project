@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Line, Pie } from '@ant-design/charts';
 import './style.css'
 
@@ -13,11 +13,11 @@ function ChartComponent({transactions}) {
     const spendingData=sortedTransactions.filter((item)=>item.type=='expense');
     let newSpending=[{tag:'food',amount:0},{tag:'education',amount:0},{tag:'office',amount:0},{tag:'others',amount:0}];
     spendingData.forEach(item => {
-      if (item.tag=='food') {
+      if (item.tag==='food') {
           newSpending[0].amount+=item.amount;
-      }else if(item.tag=='education'){
+      }else if(item.tag==='education'){
           newSpending[1].amount+=item.amount;
-      }else if(item.tag=='office'){
+      }else if(item.tag==='office'){
           newSpending[2].amount+=item.amount;
       }else{
           newSpending[3].amount+=item.amount;
