@@ -10,7 +10,7 @@ import {  doc, getDoc} from 'firebase/firestore';
 
 
  function Header({isprofileUpdated}) {
-    const [user,loading]=useAuthState(auth);
+    const [user]=useAuthState(auth);
     const navigate=useNavigate();
     const location=useLocation();
 useEffect(()=>{

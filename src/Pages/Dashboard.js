@@ -69,14 +69,14 @@ if(!many)toast.error("Couldn't add transaction!");
   }
  }
  ///////////////////////////////////////////////
- useEffect(()=>{
+ useEffect((user)=>{
 //Get all transactions from firebase and store in transaction useState variable
 if (!user) {
   navigate('/');
 }else{
-  fetchTransactions();
+  fetchTransactions(user);
 }
- },[]);
+ },[user]);
 //////////////////////////////////////////////////////
  useEffect(()=>{
 calculateBalance(transactions);
@@ -115,7 +115,7 @@ setExpense(expenseTotal);
 setTotalBalance(incomeTotal-expenseTotal);
  }
 //////////////////////////////////////////////////////
-async function fetchTransactions(){
+async function fetchTransactions(user){
 setloading(true);
 if (user) {
   const q=query(collection(db,`users/${user.uid}/transactions`));

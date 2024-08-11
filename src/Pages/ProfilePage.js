@@ -88,7 +88,7 @@ async function updateProfileDetails(newdata){
     }}  text={'Go To Dashboard'}/></>}
   </div>
   </div> 
-  <ProfileModal loadprofile={loadprofile} updateProfileDetails={updateProfileDetails} userDetails={userDetails} isModalProfileOpen={isModalProfileOpen} setprofileModalOpen={setprofileModalopen}  /> </>
+  {userDetails && <ProfileModal loadprofile={loadprofile} updateProfileDetails={updateProfileDetails} userDetails={userDetails} isModalProfileOpen={isModalProfileOpen} setprofileModalOpen={setprofileModalopen}  />} </>
   }
    </>
   )

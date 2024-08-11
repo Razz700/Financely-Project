@@ -5,14 +5,14 @@ import { toast } from 'react-toastify';
 import Input from '../Input';
 
 function ProfileModal({loadprofile,updateProfileDetails,isModalProfileOpen,setprofileModalOpen,userDetails}) {
-    const [name,setname]=useState('');
+    const [name,setname]=useState(userDetails.name);
     const [image,setimage]=useState();
     const [select,setSelect]=useState('#2970ff');
     const [profileimgYes,setProfileimgYes]=useState(false);
-    useEffect((isModalProfileOpen,nameval) => {
+    useEffect((isModalProfileOpen) => {
         if (isModalProfileOpen) {
             document.body.style.overflow = 'hidden';
-            setname(nameval);
+            // setname(userDetails.name);
         } else {
             document.body.style.overflow = 'auto';
         }
@@ -20,7 +20,7 @@ function ProfileModal({loadprofile,updateProfileDetails,isModalProfileOpen,setpr
         return () => {
             document.body.style.overflow = 'auto';
         };
-    }, [isModalProfileOpen,userDetails.name]);
+    }, [isModalProfileOpen]);
     ///////////////////////////////////////////
   return (
     <>
