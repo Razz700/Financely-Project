@@ -1,0 +1,23 @@
+.input-wrapper{
+margin-bottom: .8rem;
+}
+.label-input{
+    text-transform: capitalize;
+    display: block;
+    font-size: .8rem;
+    margin: 0px;
+}
+.custom-input{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding: .5rem 0rem;
+    font-size: .8rem;
+    outline: none;
+    opacity: .8;
+    margin-bottom: 0.2rem;
+}
+.custom-input:focus{
+    opacity: 1;
+    transition: all 0.2 ease;
+}

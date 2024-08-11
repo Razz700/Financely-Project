@@ -1,0 +1,38 @@
+.search-input{
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+.search-input img{
+    width:1rem;
+    height: 1rem;
+    margin-right: 1rem;
+}
+.search-input input{
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+.select-input{
+    width: 200px;
+    height: 2.2rem;
+}
+.input-flex{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 10px;
+    justify-content: space-between;
+}
+.csvbtns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem;
+}
+.table-box{
+    box-shadow: var(--shadow);
+}
