@@ -16,16 +16,16 @@ import {  doc, getDoc} from 'firebase/firestore';
 useEffect(()=>{
 if (user && location.pathname==='/'){
   //console.log(window.location.href,'in href',location.pathname);
-  //console.log(user);
+  //console.log(user); 
     navigate('/dashboard');
 }  
-},[user,location.pathname]);
+},[user]);
 
 useEffect(()=>{
-  setTimeout(()=>getUserName(user,isprofileUpdated),500);},[user,isprofileUpdated]);
+getUserName()},[user,isprofileUpdated]);
 const [userDetails,setUserDetails]=useState();
 ////////////////////////////////////
-async function getUserName(user,isprofileUpdated){
+async function getUserName(){
   try{
   if(user){
     const userDocRef = doc(db, `users/${user.uid}`);
@@ -38,7 +38,7 @@ async function getUserName(user,isprofileUpdated){
   root.style.setProperty('--theme',currentuserdata.themeColor);
 }
   }}catch(e){
-    console.log(e.message,isprofileUpdated);
+    console.log(e.message);
   }
 }
 //////////////////////////////////////////////

@@ -21,7 +21,7 @@ function Tablecustom({data,columns,deleteTransaction,editTransaction}) {
 const [classActive,setClassActive]=useState(1);
 const [newdata,setnewdata]=useState(data.slice(0,10));
 const [disabled,setdisabled]=useState(()=>data.length>10?[true,false]:[true,true]);
-function navigatePage(page,rdata){
+function navigatePage(page){
     let activePage=classActive;
     if (page==='previous') {
        activePage=classActive-1;
@@ -35,10 +35,10 @@ function navigatePage(page,rdata){
     }
     setClassActive(activePage);
     // console.log(activePage,pages.length,'message');
-    rdata?console.log(rdata):console.log('hi');
+   // rdata?console.log(rdata):console.log('hi');
     setdisabled([activePage===1,activePage===pages.length || pages.length===0]);
 }
-useEffect(()=>navigatePage(1,data),[data]);
+useEffect(()=>navigatePage(1),[data]);
 ////////////////////modal code////////////////////
 const [isModalDeleteOpen,setDeleteModalOpen]=useState(false);
 const [modalData,setModalData]=useState([]);

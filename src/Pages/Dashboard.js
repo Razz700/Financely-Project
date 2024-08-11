@@ -5,7 +5,7 @@ import AddExpenseModal from '../components/Modal/AddExpenseModal';
 import AddIncomeModal from '../components/Modal/AddIncomeModal';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth,db } from '../firebase';
-import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { addDoc, collection, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import TransactionTable from '../components/TransactionTable';
@@ -69,12 +69,12 @@ if(!many)toast.error("Couldn't add transaction!");
   }
  }
  ///////////////////////////////////////////////
- useEffect((user)=>{
+ useEffect(()=>{
 //Get all transactions from firebase and store in transaction useState variable
 if (!user) {
   navigate('/');
 }else{
-  fetchTransactions(user);
+  fetchTransactions();
 }
  },[user]);
 //////////////////////////////////////////////////////
@@ -82,22 +82,26 @@ if (!user) {
 calculateBalance(transactions);
  },[transactions]);
  ////////////////////////////////////////
- async function updateDetailsForProfilepage(income,expense,transactionsLength) {
+ async function updateDetailsForProfilepage() {
   if(!user)return;
-const useref=doc(db,"users", user.uid);
- try{
-  await updateDoc(useref, {
-    income:income,
-    expense:expense,
-    transactionsCount:transactionsLength
- });
- }catch(e){
-console.log(e);
- }
+const useref=doc(db,`users/${user.uid}`);
+const querysnapshot=await getDoc(useref);
+const currdata=querysnapshot.data();
+if (currdata.income!=income || currdata.expense!=expense || currdata.transactionsCount!=transactions.length) {
+  try{
+    await updateDoc(useref, {
+      income:income,
+      expense:expense,
+      transactionsCount:transactions.length
+   });
+   }catch(e){
+  console.log(e);
+   }
+}
  }
  //////////////////////////////////////////////
  useEffect(()=>{
-  updateDetailsForProfilepage(income,expense,transactions.length);
+  updateDetailsForProfilepage();
  },[income,expense,transactions.length]);
 //////////////////////////////////////////
  function calculateBalance(transactions){
@@ -115,7 +119,7 @@ setExpense(expenseTotal);
 setTotalBalance(incomeTotal-expenseTotal);
  }
 //////////////////////////////////////////////////////
-async function fetchTransactions(user){
+async function fetchTransactions(){
 setloading(true);
 if (user) {
   const q=query(collection(db,`users/${user.uid}/transactions`));
@@ -137,7 +141,7 @@ try{
   const q=query(collection(db,`users/${user.uid}/transactions`));
   const querySnapshot = await getDocs(q);
   const docIds = querySnapshot.docs.map(doc => doc.id);
-  console.log('Filtered Document IDs:', docIds);
+  //console.log('Filtered Document IDs:', docIds);
  for(const docid of docIds){
   const docRef = doc(db, `users/${user.uid}/transactions`, docid);
   await deleteDoc(docRef);

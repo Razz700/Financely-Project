@@ -46,18 +46,18 @@ function ChartComponent({transactions}) {
        angleField:'amount',
        colorField:'tag'
       };
-    //  let chart;
-    //  let piechart;
+      let chart;
+      let piechart;
   return (
     <div className='chart-wrapper'>
         <div><h2 style={{paddingLeft:'10px'}}>Your Analytics</h2>
  <Line {...config} 
-// onReady={(chartInstance) => (chart = chartInstance)} 
+ onReady={(chartInstance) => (chart = chartInstance)} 
  />
   </div>
   <div><h2 style={{paddingLeft:'10px'}}>Your Spendings</h2>
  <Pie  {...spendingconfig} 
- //onReady={(chartInstance) => (piechart = chartInstance)}
+ onReady={(chartInstance) => (piechart = chartInstance)}
   />
   </div>
            </div>
