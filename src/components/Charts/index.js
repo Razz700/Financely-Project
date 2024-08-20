@@ -44,19 +44,19 @@ function ChartComponent({transactions}) {
         width: 400,
         autoFit: true,
        angleField:'amount',
-       colorField:'tag'
+       colorField:'tag',
       };
       let chart;
       let piechart;
   return (
     <div className='chart-wrapper'>
         <div><h2 style={{paddingLeft:'10px'}}>Your Analytics</h2>
- <Line {...config} 
+ <Line {...config} key={JSON.stringify(data)}
  onReady={(chartInstance) => (chart = chartInstance)} 
  />
   </div>
   <div><h2 style={{paddingLeft:'10px'}}>Your Spendings</h2>
- <Pie  {...spendingconfig} 
+ <Pie  {...spendingconfig} key={JSON.stringify(spendingData)}
  onReady={(chartInstance) => (piechart = chartInstance)}
   />
   </div>
